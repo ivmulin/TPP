@@ -5,7 +5,7 @@ def Supersize(G):
     return s
 
 
-def F(G, s=0):
+def Fleury(G, s=0):
     size = len(G)
     supersize = Supersize(G)
     S = []
@@ -31,19 +31,19 @@ def F(G, s=0):
     return path
 
 
-def _W(G, K, s, result):
+def _CycleAlgorithm(G, K, s, result):
     for i in G[s]:
         if i in K[s]:
             continue
         K[s].append(i)
-        _W(G, K, i, result)
+        _CycleAlgorithm(G, K, i, result)
     result.append(s)
 
 
-def W(G, s=0):
+def CycleAlgorithm(G, s=0):
     K = [[None] for i in range(len(G))]
     result = []
-    _W(G, K, s, result)
+    _CycleAlgorithm(G, K, s, result)
     result = result[::-1]
     return result
 
@@ -73,7 +73,7 @@ def DFS(s, visited, G, result):
             DFS(i, visited, G, result)
 
 
-def T(G, s=0):
+def Kosaraju(G, s=0):
     size = len(G)
     visited = [0] * size
     GT = revert(G)
