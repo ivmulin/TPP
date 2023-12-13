@@ -1,0 +1,32 @@
+************* Module mst
+mst.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+mst.py:1:0: C0115: Missing class docstring (missing-class-docstring)
+mst.py:8:4: C0116: Missing function or method docstring (missing-function-docstring)
+mst.py:8:4: C0103: Method name "ExtractMin" doesn't conform to snake_case naming style (invalid-name)
+mst.py:9:8: W0602: Using global for 'iteration' but no assignment is done (global-variable-not-assigned)
+mst.py:12:8: C0200: Consider using enumerate instead of iterating with range and len (consider-using-enumerate)
+mst.py:21:4: C0116: Missing function or method docstring (missing-function-docstring)
+mst.py:21:4: C0103: Method name "isEmpty" doesn't conform to snake_case naming style (invalid-name)
+mst.py:25:8: W0201: Attribute '_n' defined outside __init__ (attribute-defined-outside-init)
+mst.py:39:0: C0116: Missing function or method docstring (missing-function-docstring)
+mst.py:39:0: C0103: Function name "Prim" doesn't conform to snake_case naming style (invalid-name)
+mst.py:39:9: C0103: Argument name "G" doesn't conform to snake_case naming style (invalid-name)
+mst.py:59:0: C0116: Missing function or method docstring (missing-function-docstring)
+mst.py:59:0: C0103: Function name "FindShortestEdge" doesn't conform to snake_case naming style (invalid-name)
+mst.py:59:21: C0103: Argument name "G" doesn't conform to snake_case naming style (invalid-name)
+mst.py:60:34: R1734: Consider using [] instead of list() (use-list-literal)
+mst.py:61:4: C0200: Consider using enumerate instead of iterating with range and len (consider-using-enumerate)
+mst.py:69:0: C0116: Missing function or method docstring (missing-function-docstring)
+mst.py:69:0: C0103: Function name "AmountOfEdges" doesn't conform to snake_case naming style (invalid-name)
+mst.py:69:18: C0103: Argument name "G" doesn't conform to snake_case naming style (invalid-name)
+mst.py:76:0: C0116: Missing function or method docstring (missing-function-docstring)
+mst.py:76:0: C0103: Function name "Kruskal" doesn't conform to snake_case naming style (invalid-name)
+mst.py:76:12: C0103: Argument name "G" doesn't conform to snake_case naming style (invalid-name)
+mst.py:79:4: C0103: Variable name "connectedVertices" doesn't conform to snake_case naming style (invalid-name)
+mst.py:80:4: C0103: Variable name "connectedEdges" doesn't conform to snake_case naming style (invalid-name)
+mst.py:81:4: C0103: Variable name "isolatedEdges" doesn't conform to snake_case naming style (invalid-name)
+mst.py:80:4: W0612: Unused variable 'connectedEdges' (unused-variable)
+
+-----------------------------------
+Your code has been rated at 6.79/10
+
