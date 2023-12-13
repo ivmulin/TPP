@@ -28,6 +28,12 @@ class Test_mst(unittest.TestCase):
         self.assertEqual(mst.Prim(self.G1), self.result1)
         self.assertEqual(mst.Prim(self.G2), self.result2)
 
+    def test_Kruskal(self):
+        self.assertEqual(mst.Kruskal(self.G1), [
+                         [4, 5], [0, 5], [1, 3], [1, 2], [0, 1]])
+        self.assertEqual(mst.Kruskal(self.G2), [
+                         [0, 4], [2, 3], [0, 1], [0, 2]])
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
