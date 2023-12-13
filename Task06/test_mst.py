@@ -1,6 +1,7 @@
 import unittest
 import mst
 
+
 class Test_mst(unittest.TestCase):
     def setUp(self):
         self.G1 = [
@@ -24,8 +25,8 @@ class Test_mst(unittest.TestCase):
         self.result2 = [(0, 4), (0, 1), (0, 2), (2, 3)]
 
     def test_Prim(self):
-        self.assertEqual( mst.Prim(self.G1), self.result1 )
-        self.assertEqual( mst.Prim(self.G2), self.result2 )
+        self.assertEqual(mst.Prim(self.G1), self.result1)
+        self.assertEqual(mst.Prim(self.G2), self.result2)
 
 
 if __name__ == "__main__":
