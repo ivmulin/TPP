@@ -1,40 +1,36 @@
 class Queue:
     def __init__(self, size, s=0):
-        self.queue = list( range(size) )
+        self.queue = list(range(size))
         self.keys = [float("inf")] * size
         self.tracked = []
         self.keys[s] = 0
-
 
     def ExtractMin(self):
         global iteration
         m = float("inf")
         i = 0
-        for v in range( len(self.queue) ):
-            if  self.keys[v] < m and \
-                self.queue[v] not in self.tracked:
+        for v in range(len(self.queue)):
+            if self.keys[v] < m and \
+                    self.queue[v] not in self.tracked:
                 m = self.keys[v]
                 i = v
         q = self.queue[i]
         self.tracked.append(q)
         return q
 
-
     def isEmpty(self):
-        return len( self.tracked ) == len( self.queue )
-
+        return len(self.tracked) == len(self.queue)
 
     def __iter__(self):
         self._n = 0
         return self
 
-
     def __next__(self):
-        if self._n < len( self.queue ):
+        if self._n < len(self.queue):
             self._n += 1
-            return self.queue[ self._n-1 ]
+            return self.queue[self._n-1]
         raise StopIteration
-        
+
 
 def Prim(G, s=0):
     size = len(G)
@@ -43,7 +39,7 @@ def Prim(G, s=0):
 
     queue = Queue(size, s)
     tree = []
-    
+
     v = queue.ExtractMin()
     while not queue.isEmpty():
         for u in G[v]:
@@ -56,54 +52,55 @@ def Prim(G, s=0):
     return tree
 
 
-def AdjacencyList(G):
+def FindShortestEdge(G, connected):
+    minpath, edge = float("inf"), list()
+    for e in range(len(G)):
+        for k, v in G[e].items():
+            pair = sorted([e, k])
+            if v < minpath and pair not in connected:
+                edge, minpath = pair, v
+    return edge, minpath
+
+
+def AmountOfEdges(G):
+    a = 0
+    for i in G:
+        a += len(i)
+    return a // 2  # каждое ребро посчитано дважды
+
+
+def Kruskal(G):
     size = len(G)
-    adjlist = dict()
-    for i in range(size):
-        for j in G[i].keys():
-            a, b = sorted([i, j])
-            if (a, b) not in adjlist:
-                adjlist[(a, b)] = G[i][j]
+    forest = []
+    connectedVertices = set()
+    connectedEdges = []
+    isolatedEdges = {}
+    edges = AmountOfEdges(G)
 
-    return adjlist
-
-def Raw(structure):
-    raw = set()
-    for e in structure:
-        raw.update( set(e) )
-    return raw
-
-
-def IsAdjacent(forest, tree, x, y):
-    if x in Raw(forest[tree]):
-        m = x
-    else:
-        m = y
-    for i in range( len(forest) ):
-        if i == tree:
+    for i in range(edges):
+        edge, _ = FindShortestEdge(G, forest)
+        if edge[0] in connectedVertices and edge[1] in connectedVertices:
             continue
-        if  (x in Raw(forest[i]) and m == y) or \
-            (y in Raw(forest[i]) and m == x):
-            return i
-    return None
+        if edge[0] not in connectedVertices and edge[1] not in connectedVertices:
+            isolatedEdges[edge[0]] = isolatedEdges[edge[1]] = edge.copy()
+        else:
+            if not isolatedEdges.get(edge[0]):
+                isolatedEdges[edge[1]].append(edge[0])
+                isolatedEdges[edge[0]] = isolatedEdges[edge[1]]
+            else:
+                isolatedEdges[edge[0]].append(edge[1])
+                isolatedEdges[edge[1]] = isolatedEdges[edge[0]]
 
+        forest.append(edge)
+        connectedVertices.add(edge[0])
+        connectedVertices.add(edge[1])
 
-def Kruskal(G, s=0):
-    size = len(G)
-    forest = [list()]
-    adjmap = AdjacencyList(G)
-    adjmap = dict( sorted(adjmap.items(), key=lambda x: x[1]) )
-    
-    forest[0].append( list(adjmap.keys())[0] )
-    for (x, y) in adjmap.keys():
-        for t in range( len(forest) ):
-            raw = Raw(forest[t])
-            if not ( x in raw and y in raw ):
-
-                forest[t].append((x, y))
-                adjacent = IsAdjacent(forest, t, x, y)
-                if adjacent:
-                    forest[t].extend( forest[adjacent] )
-                    forest[adjacent].clear()
+    for i in range(size):
+        for j in G[i]:
+            if j not in isolatedEdges[i]:
+                forest.append(sorted([i, j]))
+                branch = isolatedEdges[i]
+                isolatedEdges[i] += isolatedEdges[j]
+                isolatedEdges[j] += branch
 
     return forest
