@@ -1,0 +1,24 @@
+Тема: ab
+1. q1ab
+2. q2ab
+3. q3ab
+
+Тема: cd
+1. q1cd
+2. q2cd
+3. q3cd
+
+Тема: ef
+1. q1ef
+2. q2ef
+3. q3ef
+
+Тема: gh
+1. q1gh
+2. q2gh
+3. q3gh
+
+Тема: ij
+1. q1ij
+2. q2ij
+3. q3ij
